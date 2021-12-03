@@ -9,8 +9,8 @@ export function LogIn({ changeBeginning, navigation }) {
       <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height, alignItems: 'center'}}>
         <Logo />
         <Text style={[styles.infoText, {marginTop: 0, marginBottom: 40}]}>Back for more?</Text>
-        <Input inputTitle="Email"/>
-        <Input overrideStyle={{marginBottom: 0}}inputTitle="Password"/>
+        <Input inputTitle="Email" keyboardType="email-address" returnKeyType="next" textContentType="emailAddress"/>
+        <Input secureTextEntry overrideStyle={{marginBottom: 0}}inputTitle="Password" returnKeyType="done" textContentType="password"/>
         <View style={{flexDirection: 'row', width: '80%', justifyContent: 'space-between'}}>
           <Pressable>
             {({ pressed }) => <Text style={[{color: pressed ? 'white' : '#FFA500'}, buttonStyles.button]}>{"Don't have an account?"}</Text>}
