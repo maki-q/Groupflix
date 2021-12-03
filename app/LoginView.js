@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Welcome, SignUp, LogIn, Info, Info2 } from './LogIn';
+import { Welcome, SignUp, LogIn, Info, Info2 } from './login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 

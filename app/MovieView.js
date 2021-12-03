@@ -1,56 +1,14 @@
 import * as React from 'react';
-import { Text, View, Image, Button } from 'react-native';
+import { Image } from 'react-native';
+import { ExploreScreen, MovieScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-
-function ExploreScreen({ changeBeginning }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-      <Button
-        title="Back to Welcome Screen"
-        onPress={() => changeBeginning(true)}/>
-    </View>
-  );
-}
-
-function WatchedScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Watched!</Text>
-    </View>
-  );
-}
-
-function SearchScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Search!</Text>
-    </View>
-  );
-}
-
-function TvScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>TV!</Text>
-    </View>
-  );
-}
-
-function MovieScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Movies!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
 const NavbarOptions = ({ route }) => ({
   tabBarStyle: { backgroundColor: '#0f0f0f' },
-  tabBarIcon: ({ focused, color, size }) => {
+  tabBarIcon: ({ focused }) => {
     let iconName;
     switch(route.name) {
       case 'Explore':
