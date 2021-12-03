@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   backgroundTheme: {
     flex: 1,
-    backgroundColor: '#0f0f0f'
+    backgroundColor: '#0f0f0f',
+    alignItems: 'center',
   },
 
   button: {

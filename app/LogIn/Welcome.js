@@ -10,7 +10,7 @@ export function Welcome({ navigation }) {
   }
 
   return (
-    <View style={[styles.backgroundTheme, baseStyle]}>
+    <View style={[styles.backgroundTheme]}>
       <Logo/>
       <View style={[{flex: 6, width: '80%'}, baseStyle]}>
         <Text style={{ color: 'white', fontFamily: 'Ubuntu',fontSize: 46, textAlign: 'center' }}>Welcome to Groupflix</Text>

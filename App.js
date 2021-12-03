@@ -1,6 +1,7 @@
 // You can import Ionicons from @expo/vector-icons if you use Expo or
 // react-native-vector-icons/Ionicons otherwise.
 import React, { useState } from 'react';
+import { Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import { MovieView } from './app/MovieView';
 import { LoginView } from './app/LoginView';
@@ -12,7 +13,7 @@ export default function App() {
   })
 
   if(!loaded) {
-    return 'Loading...'
+    return <Text>{"Loading..."}</Text>
   }
 
   return beginning ? (
