@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
-function ExploreScreen({ navigation }) {
+function ExploreScreen({ changeBeginning }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
+      <Button
+        title="Back to Welcome Screen"
+        onPress={() => changeBeginning(true)}/>
     </View>
   );
 }
@@ -80,16 +83,19 @@ const NavbarOptions = ({ route }) => ({
   },
   tabBarActiveTintColor: '#FFA500', //orange
   tabBarInactiveTintColor: '#C4C4C4', //light grey
+  headerShown: false,
 })
 
-export function MovieView() {
+export function MovieView({changeBeginning}) {
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Explore"
         screenOptions={NavbarOptions}
       >
-        <Tab.Screen name="Explore" component={ExploreScreen} />
+        <Tab.Screen name="Explore">
+        {props => <ExploreScreen {...props} changeBeginning={changeBeginning}/>}
+        </Tab.Screen>
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name="TV Shows" component={TvScreen} />
         <Tab.Screen name="Movies" component={MovieScreen} />
