@@ -13,28 +13,28 @@ const NavbarOptions = ({ route }) => ({
     switch(route.name) {
       case 'Explore':
         iconName = focused
-        ? require('../assets/SelectedHome.png')
-        : require('../assets/UnselectedHome.png');
+        ? require('../assets/images/icons/SelectedHome.png')
+        : require('../assets/images/icons/UnselectedHome.png');
         break;
       case 'Movies':
         iconName = focused
-        ? require('../assets/SelectedMovie.png')
-        : require('../assets/UnselectedMovie.png');
+        ? require('../assets/images/icons/SelectedMovie.png')
+        : require('../assets/images/icons/UnselectedMovie.png');
         break;
       case 'TV Shows':
         iconName = focused
-        ? require('../assets/SelectedTv.png')
-        : require('../assets/UnselectedTv.png');
+        ? require('../assets/images/icons/SelectedTv.png')
+        : require('../assets/images/icons/UnselectedTv.png');
         break;
       case 'Watch':
         iconName = focused
-        ? require('../assets/SelectedFriends.png')
-        : require('../assets/UnselectedFriends.png');
+        ? require('../assets/images/icons/SelectedFriends.png')
+        : require('../assets/images/icons/UnselectedFriends.png');
         break;
       case 'Search':
         iconName = focused
-        ? require('../assets/SelectedSearch.png')
-        : require('../assets/UnselectedSearch.png');
+        ? require('../assets/images/icons/SelectedSearch.png')
+        : require('../assets/images/icons/UnselectedSearch.png');
         break;
     }
     return <Image source={iconName} style={{ width: 30, resizeMode: 'contain'}}/>;

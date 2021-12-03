@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import styles from '../styles';
+import { SmallButton, Logo } from '../components';
 
 export function Info({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Info!</Text>
-      <Button
-        title="Next Info Page"
+    <View style={[{ flex: 1, alignItems: 'center' }, styles.backgroundTheme]}>
+      <Logo />
+      <Text style={styles.infoText}>Explore and tell us a bit about the titles you are interested in seeing in the future.</Text>
+      <SmallButton position="right"
+        title="Next"
         onPress={() => navigation.navigate("Info2")}
       />
-      <Button
+      <SmallButton position="left"
         title="Back"
         onPress={() => navigation.navigate("Welcome")}
       />
@@ -19,13 +22,16 @@ export function Info({ navigation }) {
 
 export function Info2({ navigation, changeBeginning }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Info Page 2!</Text>
-      <Button
-        title="Main Page"
+    <View style={[{ flex: 1, alignItems: 'center' }, styles.backgroundTheme]}>
+      <Logo />
+      <Text style={styles.infoText}>{"Next time you gather with friends we will match titles that you've all liked."}</Text>
+      <Text style={styles.infoText}>{"Stop wasting time trying to figure out what to watch."}</Text>
+      <Text style={styles.infoText}>{"We’ll find it for you and make sure you’ll all enjoy it."}</Text>
+      <SmallButton position="right"
+        title="Explore"
         onPress={() => changeBeginning(false)}
       />
-      <Button
+      <SmallButton position="left"
         title="Back"
         onPress={() => navigation.navigate("Info")}
       />
