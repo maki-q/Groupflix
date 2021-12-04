@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button, Pressable, Image, FlatList } from 'react-native';
-import { ProfileIcon, CustomCarousel } from '../components'
-import Modal from "react-native-modal";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
+import { ProfileIcon, CustomCarousel, CustomModal } from '../components'
 import styles from '../styles';
 
 export function VideoScreen({ changeBeginning, changeDefaultPage, type }) {
@@ -16,50 +15,7 @@ export function VideoScreen({ changeBeginning, changeDefaultPage, type }) {
 
   return (
     <SafeAreaView style={[styles.backgroundTheme]}>
-      <Modal
-        isVisible={modalVisible}
-        backdropColor="#0f0f0f"
-        backdropOpacity={1}
-        onBackButtonPress={() => setModalVisible(false)}
-        style={{flex: 1}}
-      >
-        <Pressable style={exploreStyle.close} onPress={() => setModalVisible(false)} >
-          <Image style={exploreStyle.closeImage} source={require('../../assets/images/icons/Close.png')} />
-        </Pressable>
-
-        <View style={{flex: 6}}>
-          <Image style={exploreStyle.banner} source={{uri: "https://image.tmdb.org/t/p/original/iNh3BivHyg5sQRPP1KOkzguEX0H.jpg"}}/>
-        </View>
-        <View style={{flex: 10}}>
-          <View>
-            <Text style={exploreStyle.title}>{"Shawshank Redemption"}</Text>
-          </View>
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20}}>
-            <Text style={exploreStyle.overview}>{"7.5/10"}</Text>
-            <View style={{alignItems: 'center'}}>
-              <Text style={exploreStyle.overview}>{"Released"}</Text>
-              <Text style={exploreStyle.overview}>{"06-05-14"}</Text>
-            </View>
-
-          </View>
-
-          <ScrollView>
-            <Text style={exploreStyle.overview}>{"As humanity picks up the pieces, following the conclusion of \"Transformers: Dark of the Moon,\" Autobots and Decepticons have all but vanished from the face of the planet. However, a group of powerful, ingenious businessman and scientists attempt to learn from past Transformer incursions and push the boundaries of technology beyond what they can control - all while an ancient, powerful Transformer menace sets Earth in his cross-hairs.As humanity picks up the pieces, following the conclusion of \"Transformers: Dark of the Moon,\" Autobots and Decepticons have all but vanished from the face of the planet. However, a group of powerful, ingenious businessman and scientists attempt to learn from past Transformer incursions and push the boundaries of technology beyond what they can control - all while an ancient, powerful Transformer menace sets Earth in his cross-hairs.As humanity picks up the pieces, following the conclusion of \"Transformers: Dark of the Moon,\" Autobots and Decepticons have all but vanished from the face of the planet. However, a group of powerful, ingenious businessman and scientists attempt to learn from past Transformer incursions and push the boundaries of technology beyond what they can control - all while an ancient, powerful Transformer menace sets Earth in his cross-hairs."}</Text>
-          </ScrollView>
-
-          <View style={{ alignItems: 'center'}}>
-            <Pressable
-              style={({ pressed }) => [{ backgroundColor: pressed ? '#FFA500' : '#0f0f0f' }, exploreStyle.button, styles.button]}
-              onPress={() => setModalVisible(false)}>
-              {({ pressed }) => {
-                return pressed ? <Text style={[{color: '#0f0f0f' }, exploreStyle.text]}>{"Added to your list."}</Text> :
-                  <Text style={[{color: 'white' }, exploreStyle.text]}>{"I want to see this!"}</Text>
-              }}
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      <CustomModal setModalVisible={setModalVisible} modalVisible={modalVisible} />
 
       <ProfileIcon/>
       <View style={exploreStyle.header}>

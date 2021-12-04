@@ -8,6 +8,22 @@ import { ProfileIcon } from './ProfileIcon';
 import { FriendIcon } from './FriendIcon';
 import { MovieCard } from './MovieCard';
 import { CustomCarousel } from './CustomCarousel';
+import { CustomModal } from './CustomModal';
+import { SearchCard } from './SearchCard';
+import { TopSearchCard } from './TopSearchCard';
 
 
-export { LargeButton, SmallButton, CustomButton, Logo, Input, EmailButton, ProfileIcon, FriendIcon, MovieCard, CustomCarousel };
+export {
+  LargeButton,
+  SmallButton,
+  CustomButton,
+  Logo,
+  Input,
+  EmailButton,
+  ProfileIcon,
+  FriendIcon,
+  MovieCard,
+  CustomCarousel,
+  CustomModal,
+  SearchCard,
+  TopSearchCard };
