@@ -3,7 +3,7 @@ import { View, KeyboardAvoidingView, Text, Dimensions } from 'react-native';
 import styles from '../styles';
 import { Logo, Input, SmallButton } from '../components';
 
-export function SignUp({ changeBeginning, navigation }) {
+export function SignUp({ navigation }) {
   return (
     <KeyboardAvoidingView behavior="position" style={[styles.backgroundTheme]}>
       <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height, alignItems: 'center'}}>
@@ -15,7 +15,7 @@ export function SignUp({ changeBeginning, navigation }) {
         <Input inputTitle="Password" secureTextEntry returnKeyType="done" textContentType="newPassword"/>
         <SmallButton position="right"
           title="Submit"
-          onPress={() => changeBeginning(false)}
+          onPress={() => navigation.navigate("Invite Friends")}
         />
         <SmallButton position="left"
           title="Back"
