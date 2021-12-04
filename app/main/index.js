@@ -1,6 +1,5 @@
-import { MovieScreen } from './Movie'
-import { TvScreen } from './Tv'
+import { VideoScreen } from './Video'
 import { SearchScreen } from './Search'
 import { WatchedScreen } from './Watched'
 
-export {MovieScreen, TvScreen, SearchScreen, WatchedScreen };
+export {VideoScreen, SearchScreen, WatchedScreen };

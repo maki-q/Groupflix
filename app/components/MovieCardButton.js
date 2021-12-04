@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { Image, Pressable } from 'react-native';
 
-export function MovieCardButton(props) {
+export function MovieCardButton({title, selectVideo}) {
   const [selected, setSelected] = useState(false);
   let activeImage;
   let inactiveImage;
   let selectedInfo;
 
-  switch(props.title) {
+  switch(title) {
     case 'Like':
       activeImage = require('../../assets/images/icons/SelectedLike.png');
       inactiveImage = require('../../assets/images/icons/UnselectedLike.png');
@@ -29,6 +29,9 @@ export function MovieCardButton(props) {
 
   function pressAction() {
     setSelected(!selected);
+    if (title === 'Info') {
+      selectVideo();
+    }
   }
 
   let currentImage = selected ? activeImage : inactiveImage;
@@ -40,7 +43,7 @@ export function MovieCardButton(props) {
     >
       {({pressed}) => (
         <Image
-        source={pressed && props.title === 'Info' ? selectedInfo : currentImage}
+        source={pressed && title === 'Info' ? selectedInfo : currentImage}
         style={{
           width: 25,
           height: 25,

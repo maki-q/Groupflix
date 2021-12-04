@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image } from 'react-native';
-import { MovieScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
+import { VideoScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -48,9 +48,11 @@ export function MovieView({ defaultPage, changeDefaultPage, changeBeginning }) {
       >
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name="Movies">
-          {(props) => <MovieScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} />}
+          {(props) => <VideoScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="Movies"/>}
         </Tab.Screen>
-        <Tab.Screen name="TV Shows" component={TvScreen} />
+        <Tab.Screen name="TV Shows">
+          {(props) => <VideoScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="TV Shows"/>}
+        </Tab.Screen>
         <Tab.Screen name="Watch" component={WatchedScreen} />
       </Tab.Navigator>
     </NavigationContainer>

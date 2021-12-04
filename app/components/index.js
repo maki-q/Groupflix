@@ -7,6 +7,7 @@ import { Logo } from './Logo';
 import { ProfileIcon } from './ProfileIcon';
 import { FriendIcon } from './FriendIcon';
 import { MovieCard } from './MovieCard';
+import { CustomCarousel } from './CustomCarousel';
 
 
-export { LargeButton, SmallButton, CustomButton, Logo, Input, EmailButton, ProfileIcon, FriendIcon, MovieCard};
+export { LargeButton, SmallButton, CustomButton, Logo, Input, EmailButton, ProfileIcon, FriendIcon, MovieCard, CustomCarousel };

@@ -27,7 +27,7 @@ const exploreStyle = StyleSheet.create({
   }
 })
 
-export function MovieCard(props) {
+export function MovieCard({ selectVideo }) {
   return (
     <View style={exploreStyle.container}>
       <Image style={exploreStyle.banner} source={{uri: "https://image.tmdb.org/t/p/original/iNh3BivHyg5sQRPP1KOkzguEX0H.jpg"}}/>
@@ -37,7 +37,7 @@ export function MovieCard(props) {
           <Text style={exploreStyle.text}>{"7.5/10"}</Text>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <MovieCardButton title="Info" />
+          <MovieCardButton title="Info" selectVideo={selectVideo} />
           <MovieCardButton title="Dislike" />
           <MovieCardButton title="Like" />
         </View>

@@ -3,7 +3,7 @@ import Carousel from 'react-native-snap-carousel';
 import { View, Dimensions, Text, StyleSheet } from 'react-native';
 import { MovieCard } from './MovieCard';
 
-export class MyCarousel extends React.Component {
+export class CustomCarousel extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ export class MyCarousel extends React.Component {
   }
 
   _renderItem({ item }) {
-    return <MovieCard id={item} />
+    return <MovieCard id={item} selectVideo={this.props.selectVideo}/>
   }
 
   render() {
