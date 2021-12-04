@@ -11,6 +11,7 @@ export default function App() {
   const [defaultPage, changeDefaultPage] = useState('Movies');
   const [loaded] = useFonts({
     Ubuntu: require('./assets/fonts/Ubuntu-Regular.ttf'),
+    UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf')
   })
 
   if(!loaded) {

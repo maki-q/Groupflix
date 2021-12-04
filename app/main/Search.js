@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Text, SafeAreaView, ScrollView, View } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { SearchCard, TopSearchCard, CustomModal } from '../components'
+import axios from 'axios';
 import styles from '../styles';
 import { data } from './data';
+import { key } from '../key';
 
 export function SearchScreen() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [focusVideo, setFocusVideo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [topSearch, setTopSearch] = useState(data.results);
@@ -16,20 +18,30 @@ export function SearchScreen() {
 
   useEffect(() => {
     search.current.focus();
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
+    .then(res => setTopSearch(res.data.results)).catch(err => console.log(err.message))
   }, []);
+
+  useEffect(() => {
+    if (query) {
+      axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${key}&query=${query}`)
+      .then(res => setSearchResults(res.data.results))
+    }
+  }, [query])
 
   function selectVideo(data) {
     setFocusVideo(data);
     setModalVisible(true);
   }
 
-  function createSearchCards() {
+  function createCards() {
     const bucket = []
     let subBucket = []
-    for(let i = 0; i < topSearch.length; i++) {
-      subBucket.push(<SearchCard key={i} data={topSearch[i]} onClick={selectVideo} />)
 
-      if(subBucket.length === 3 || (i + 1 === topSearch.length)) {
+    for(let i = 0; i < searchResults.length; i++) {
+      subBucket.push(<SearchCard key={i} data={searchResults[i]} onClick={selectVideo} />)
+
+      if(subBucket.length === 3 || (i + 1 === searchResults.length)) {
         bucket.push((
           <View key={i} style={{flexDirection: 'row', width: '100%', justifyContent: 'center'}}>
             {subBucket}
@@ -38,7 +50,6 @@ export function SearchScreen() {
         subBucket = [];
       }
     }
-    console.log(bucket)
     return bucket;
   }
 
@@ -55,11 +66,14 @@ export function SearchScreen() {
         onFocus={() => search.current.clear()}
         returnKeyType="done"
       />
-      <Text style={{color: 'white', width: '100%',fontSize: 18, paddingLeft: 10, margin: 10, marginBottom: 5}}>Top Searches</Text>
-      <ScrollView style={{width: '100%'}}>
-        {createSearchCards()}
-        <TopSearchCard />
-      </ScrollView>
+      {!query ? (
+        <ScrollView style={{width: '100%'}}>
+          <Text style={{color: 'white', width: '100%',fontSize: 18, paddingLeft: 10, margin: 10, marginBottom: 5}}>Top Searches</Text>
+          {topSearch.map((search, index) => <TopSearchCard data={search} key={index} onClick={selectVideo} />)}
+        </ScrollView>) : (
+        <ScrollView style={{width: '100%'}}>
+          {createCards()}
+        </ScrollView>)}
 
     </SafeAreaView>
   );

@@ -14,7 +14,7 @@ export class CustomCarousel extends React.Component {
   }
 
   _renderItem({ item }) {
-    return <MovieCard id={item} selectVideo={this.props.selectVideo}/>
+    return <MovieCard data={item} selectVideo={this.props.selectVideo}/>
   }
 
   render() {

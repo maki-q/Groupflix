@@ -6,7 +6,7 @@ export function SearchCard({data, onClick}) {
     <Pressable style={{width: '30%', margin: 5}} onPress={() => onClick(data)}>
       <Image
         style={{width: '100%', height: 176, borderRadius: 10}}
-        source={{uri: `https://image.tmdb.org/t/p/original/${data.poster_path}`}}
+        source={{uri: `https://image.tmdb.org/t/p/original/${data.poster_path || data.backdrop_path}`}}
         resizeMode="contain"
       />
     </Pressable>

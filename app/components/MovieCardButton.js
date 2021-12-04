@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Image, Pressable } from 'react-native';
 
-export function MovieCardButton({title, selectVideo}) {
+export function MovieCardButton({title, selectVideo, data}) {
   const [selected, setSelected] = useState(false);
   let activeImage;
   let inactiveImage;
@@ -23,14 +23,14 @@ export function MovieCardButton({title, selectVideo}) {
     case 'Info':
       activeImage = require('../../assets/images/icons/Info.png');
       inactiveImage = activeImage;
-      selectedInfo = require('../../assets/images/icons/InfoSelected.png')
+      selectedInfo = require('../../assets/images/icons/InfoSelected.png');
       break;
   }
 
   function pressAction() {
     setSelected(!selected);
     if (title === 'Info') {
-      selectVideo();
+      selectVideo(data);
     }
   }
 

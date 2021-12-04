@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
 import { ProfileIcon, CustomCarousel, CustomModal } from '../components'
 import styles from '../styles';
+import { data } from './data';
+import { key } from '../key';
+import axios from 'axios';
 
 export function VideoScreen({ changeBeginning, changeDefaultPage, type }) {
-  const movieBucket = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [trending, setTrending] = useState(data.results);
+  const [topRated, setTopRated] = useState(data.results);
+  const [picks, setPicks] = useState(data.results);
 
-  function selectVideo () {
-    setSelectedMovie("ShawShank 2");
+  useEffect(() => {
+    if (type === 'Movies') {
+      axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`)
+      .then((res) => setTopRated(res.data.results))
+      axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
+      .then((res) => setTrending(res.data.results))
+    } else {
+      axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${key}&language=en-US&page=1`)
+      .then((res) => setTopRated(res.data.results))
+      axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`)
+      .then((res) => setTrending(res.data.results))
+    }
+  }, []);
+
+  function selectVideo (data) {
+    setSelectedMovie(data);
     setModalVisible(true);
   }
 
   return (
     <SafeAreaView style={[styles.backgroundTheme]}>
-      <CustomModal setModalVisible={setModalVisible} modalVisible={modalVisible} />
+      <CustomModal setModalVisible={setModalVisible} modalVisible={modalVisible} data={selectedMovie} />
 
       <ProfileIcon/>
       <View style={exploreStyle.header}>
@@ -23,9 +42,9 @@ export function VideoScreen({ changeBeginning, changeDefaultPage, type }) {
       </View>
 
       <ScrollView style={{width: '100%'}}>
-        <CustomCarousel data={movieBucket} title="Trending" selectVideo={selectVideo}/>
-        <CustomCarousel data={movieBucket} title="Top Rated" selectVideo={selectVideo}/>
-        <CustomCarousel data={movieBucket} title="Your Picks" selectVideo={selectVideo}/>
+        <CustomCarousel data={trending} title="Trending" selectVideo={selectVideo}/>
+        <CustomCarousel data={topRated} title="Top Rated" selectVideo={selectVideo}/>
+        <CustomCarousel data={picks} title="Your Picks" selectVideo={selectVideo}/>
         <Button onPress={() => {
           changeDefaultPage('Movies');
           changeBeginning(true);
