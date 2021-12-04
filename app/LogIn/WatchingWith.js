@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import styles from '../styles';
 import { LargeButton, Logo, ProfileIcon, FriendIcon } from '../components';
 
-export function WatchingWith({ changeBeginning }) {
+export function WatchingWith({ changeBeginning, changeDefaultPage }) {
   const friendsBucket = [
     require('../../assets/images/friends/adamk.png'),
     require('../../assets/images/friends/olivia.jpg'),
@@ -28,7 +28,10 @@ export function WatchingWith({ changeBeginning }) {
       <View style={{flex: 2, width: '100%', alignItems: 'center'}}>
       <LargeButton
         title="Find common titles"
-        onPress={() => changeBeginning(false)}
+        onPress={() => {
+          changeDefaultPage('Watch');
+          changeBeginning(false)
+        }}
       />
       </View>
     </View>

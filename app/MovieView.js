@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image } from 'react-native';
-import { ExploreScreen, MovieScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
+import { MovieScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -11,11 +11,6 @@ const NavbarOptions = ({ route }) => ({
   tabBarIcon: ({ focused }) => {
     let iconName;
     switch(route.name) {
-      case 'Explore':
-        iconName = focused
-        ? require('../assets/images/icons/SelectedHome.png')
-        : require('../assets/images/icons/UnselectedHome.png');
-        break;
       case 'Movies':
         iconName = focused
         ? require('../assets/images/icons/SelectedMovie.png')
@@ -44,19 +39,18 @@ const NavbarOptions = ({ route }) => ({
   headerShown: false,
 })
 
-export function MovieView({changeBeginning}) {
+export function MovieView({ defaultPage, changeDefaultPage, changeBeginning }) {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Explore"
+        initialRouteName={defaultPage}
         screenOptions={NavbarOptions}
       >
-        <Tab.Screen name="Explore">
-        {props => <ExploreScreen {...props} changeBeginning={changeBeginning}/>}
-        </Tab.Screen>
         <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Movies">
+          {(props) => <MovieScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} />}
+        </Tab.Screen>
         <Tab.Screen name="TV Shows" component={TvScreen} />
-        <Tab.Screen name="Movies" component={MovieScreen} />
         <Tab.Screen name="Watch" component={WatchedScreen} />
       </Tab.Navigator>
     </NavigationContainer>

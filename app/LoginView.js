@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
-export function LoginView({ changeBeginning }) {
+export function LoginView({ changeBeginning, changeDefaultPage }) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
@@ -18,7 +18,7 @@ export function LoginView({ changeBeginning }) {
           {props => <Connected {...props} changeBeginning={changeBeginning}/>}
         </Stack.Screen>
         <Stack.Screen name="Watching With">
-          {props => <WatchingWith {...props} changeBeginning={changeBeginning}/>}
+          {props => <WatchingWith {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage}/>}
         </Stack.Screen>
         <Stack.Screen name="Sign In">
           {props => <LogIn {...props} changeBeginning={changeBeginning}/>}

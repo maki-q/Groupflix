@@ -8,6 +8,7 @@ import { LoginView } from './app/LoginView';
 
 export default function App() {
   const [beginning, changeBeginning] = useState(true);
+  const [defaultPage, changeDefaultPage] = useState('Movies');
   const [loaded] = useFonts({
     Ubuntu: require('./assets/fonts/Ubuntu-Regular.ttf'),
   })
@@ -17,8 +18,8 @@ export default function App() {
   }
 
   return beginning ? (
-    <LoginView changeBeginning={changeBeginning}/>
+    <LoginView changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage}/>
   ) : (
-    <MovieView changeBeginning={changeBeginning}/>
+    <MovieView defaultPage={defaultPage} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage}/>
   );
 }
