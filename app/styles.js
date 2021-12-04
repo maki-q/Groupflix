@@ -26,5 +26,11 @@ export default StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
     marginTop: 30,
+  },
+
+  headerText: {
+    color: 'white',
+    fontFamily: 'Ubuntu',
+    fontSize: 32
   }
 });

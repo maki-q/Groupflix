@@ -12,7 +12,7 @@ export function LogIn({ changeBeginning, navigation }) {
         <Input inputTitle="Email" keyboardType="email-address" returnKeyType="next" textContentType="emailAddress"/>
         <Input secureTextEntry overrideStyle={{marginBottom: 0}}inputTitle="Password" returnKeyType="done" textContentType="password"/>
         <View style={{flexDirection: 'row', width: '80%', justifyContent: 'space-between'}}>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate("Sign Up")}>
             {({ pressed }) => <Text style={[{color: pressed ? 'white' : '#FFA500'}, buttonStyles.button]}>{"Don't have an account?"}</Text>}
           </Pressable>
           <Pressable>
