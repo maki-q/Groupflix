@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
-import { ProfileIcon, CustomCarousel, CustomModal, WatchingWithIcons } from '../components'
+import { ProfileIcon, CustomCarousel, CustomModal, WatchingWithIcons, SelectFriendsModal } from '../components'
 import styles from '../styles';
 import { data } from './data';
-import { key } from '../key';
-import axios from 'axios';
 
 
-export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucket }) {
+export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucket, toggleSelected, selectedFriends }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectingFriends, setSelectingFriends] = useState(false);
   const [trending, setTrending] = useState(data.results);
   const [topRated, setTopRated] = useState(data.results);
   const [picks, setPicks] = useState(data.results);
-
-  const friend = [friendsBucket[0], friendsBucket[5], friendsBucket[6], friendsBucket[7]];
 
   function selectVideo (data) {
     setSelectedMovie(data);
@@ -24,20 +21,21 @@ export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucke
   return (
     <SafeAreaView style={[styles.backgroundTheme]}>
       <CustomModal setModalVisible={setModalVisible} modalVisible={modalVisible} data={selectedMovie} />
+      <SelectFriendsModal setModalVisible={setSelectingFriends} modalVisible={selectingFriends} toggleSelected={toggleSelected} friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
 
-      <ProfileIcon/>
+      <ProfileIcon />
       <View style={exploreStyle.header}>
         <Text style={styles.headerText}>{"Watching With"}</Text>
       </View>
-      <WatchingWithIcons friends={friend} />
+      <WatchingWithIcons friends={selectedFriends.map(friend => friendsBucket[friend])} setSelectingFriends={setSelectingFriends}/>
       <Text style={{color: 'white', fontSize: 18, lineHeight: 27, padding: 20}}>
         We found 10 titles you all like and 13 titles most of you like.
       </Text>
 
       <ScrollView style={{width: '100%'}}>
-        <CustomCarousel data={trending} title="Movies everyone likes:" selectVideo={selectVideo}/>
-        <CustomCarousel data={topRated} title="Most everyone likes these:" selectVideo={selectVideo}/>
-        <CustomCarousel data={picks} title="Your likes:" selectVideo={selectVideo}/>
+        <CustomCarousel data={trending} title="Movies everyone likes:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
+        <CustomCarousel data={topRated} title="Most everyone likes these:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
+        <CustomCarousel data={picks} title="Your likes:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
         <Button onPress={() => {
           changeDefaultPage('Movies');
           changeBeginning(true);

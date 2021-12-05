@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Image, Pressable } from 'react-native';
 
-export function MovieCardButton({title, selectVideo, data}) {
+export function MovieCardButton({title, selectVideo, data, customStyle}) {
   const [selected, setSelected] = useState(false);
   let activeImage;
   let inactiveImage;
@@ -38,7 +38,7 @@ export function MovieCardButton({title, selectVideo, data}) {
 
   return (
     <Pressable
-      style={[{paddingLeft: 30, paddingRight: 30, width: 25, alignItems: 'center'}]}
+      style={[{paddingLeft: 30, paddingRight: 30, width: 25, alignItems: 'center'}, customStyle]}
       onPress={pressAction}
     >
       {({pressed}) => (
@@ -47,6 +47,7 @@ export function MovieCardButton({title, selectVideo, data}) {
         style={{
           width: 25,
           height: 25,
+          resizeMode: 'contain',
         }}
         />
       )}

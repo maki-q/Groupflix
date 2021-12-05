@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
-export function LoginView({ changeBeginning, changeDefaultPage, friendsBucket }) {
+export function LoginView({ changeBeginning, changeDefaultPage, friendsBucket, toggleSelected }) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
@@ -18,7 +18,7 @@ export function LoginView({ changeBeginning, changeDefaultPage, friendsBucket })
           {props => <Connected {...props} changeBeginning={changeBeginning}/>}
         </Stack.Screen>
         <Stack.Screen name="Watching With">
-          {props => <WatchingWith {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} friendsBucket={friendsBucket}/>}
+          {props => <WatchingWith {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} friendsBucket={friendsBucket} toggleSelected={toggleSelected}/>}
         </Stack.Screen>
         <Stack.Screen name="Sign In">
           {props => <LogIn {...props} changeBeginning={changeBeginning}/>}

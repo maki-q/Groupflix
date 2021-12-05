@@ -15,11 +15,24 @@ export default function App() {
   const [tvTrending, setTvTrending] = useState(null);
   const [tvTopRated, setTvTopRated] = useState(null);
   const [defaultPage, changeDefaultPage] = useState('Movies');
+  const [selectedFriends, setSelectedFriends] = useState([])
 
   const [loaded] = useFonts({
     Ubuntu: require('./assets/fonts/Ubuntu-Regular.ttf'),
     UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf')
   })
+
+  function toggleSelected(index) {
+    if (selectedFriends.indexOf(index) === -1) {
+      setSelectedFriends([index, ...selectedFriends])
+    } else {
+      const newBucket = [...selectedFriends];
+      newBucket.splice(selectedFriends.indexOf(index), 1);
+      setSelectedFriends(newBucket);
+    }
+  }
+
+
 
   const friendsBucket = [
     require('./assets/images/friends/adamk.png'),
@@ -55,19 +68,22 @@ export default function App() {
     <LoginView changeBeginning={changeBeginning}
       changeDefaultPage={changeDefaultPage}
       friendsBucket={friendsBucket}
+      toggleSelected={toggleSelected}
     />
   ) : (
     <MovieView
-      defaultPage={defaultPage}
-      changeBeginning={changeBeginning}
-      changeDefaultPage={changeDefaultPage}
-      data={{
-        movieTopRated,
-        movieTrending,
-        tvTopRated,
-        tvTrending
-      }}
-      friendsBucket={friendsBucket}
+    defaultPage={defaultPage}
+    changeBeginning={changeBeginning}
+    changeDefaultPage={changeDefaultPage}
+    data={{
+      movieTopRated,
+      movieTrending,
+      tvTopRated,
+      tvTrending
+    }}
+    friendsBucket={friendsBucket}
+    selectedFriends={selectedFriends}
+    toggleSelected={toggleSelected}
     />
   );
 }

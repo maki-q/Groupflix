@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, Pressable, StyleSheet} from 'react-native';
 
-export function WatchingWithIcons({friends}) {
+export function WatchingWithIcons({friends, setSelectingFriends}) {
   function drawIcons() {
     let bucket = [];
     if (friends.length > 4) {
@@ -14,7 +14,7 @@ export function WatchingWithIcons({friends}) {
   return (
     <View style={style.container}>
       {drawIcons()}
-      <Pressable>
+      <Pressable onPress={() => setSelectingFriends(true)}>
         <Image style={style.clickable} source={require('../../assets/images/icons/Group.png')} />
       </Pressable>
     </View>

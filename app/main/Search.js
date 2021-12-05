@@ -4,7 +4,6 @@ import { SearchBar } from 'react-native-elements';
 import { SearchCard, TopSearchCard, CustomModal } from '../components'
 import axios from 'axios';
 import styles from '../styles';
-import { data } from './data';
 import { key } from '../key';
 
 export function SearchScreen({ data }) {

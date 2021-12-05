@@ -2,11 +2,17 @@ import React, {useState} from 'react';
 import { Image, Pressable } from 'react-native';
 
 export function FriendIcon(props) {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(props.selected);
+
+  function toggleSelected() {
+    props.toggleSelected(props.id);
+    setSelected(!selected)
+  }
+
   return (
     <Pressable
       style={{margin: 10, position: 'relative'}}
-      onPress={() => setSelected(!selected)}
+      onPress={() => toggleSelected()}
     >
       <Image
         source={props.friend}

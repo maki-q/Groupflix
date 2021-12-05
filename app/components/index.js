@@ -12,6 +12,8 @@ import { CustomModal } from './CustomModal';
 import { SearchCard } from './SearchCard';
 import { TopSearchCard } from './TopSearchCard';
 import { WatchingWithIcons } from './WatchingWithIcons';
+import { FriendCluster } from './FriendCluster';
+import { SelectFriendsModal } from './SelectFriendsModal';
 
 
 export {
@@ -28,5 +30,7 @@ export {
   CustomModal,
   SearchCard,
   TopSearchCard,
-  WatchingWithIcons
+  WatchingWithIcons,
+  FriendCluster,
+  SelectFriendsModal
 };
