@@ -1,9 +1,21 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import styles from '../styles';
 import { LargeButton, Logo, ProfileIcon, FriendIcon } from '../components';
 
-export function WatchingWith({ changeBeginning, changeDefaultPage, friendsBucket, toggleSelected }) {
+export function WatchingWith({ changeBeginning, changeDefaultPage, friendsBucket, setSelectedFriends }) {
+  const [localFriends, setLocalFriends] = useState([]);
+
+  function toggleSelected(index) {
+    if (localFriends.indexOf(index) === -1) {
+      setLocalFriends([index, ...localFriends])
+    } else {
+      const newBucket = [...localFriends];
+      newBucket.splice(localFriends.indexOf(index), 1);
+      setLocalFriends(newBucket);
+    }
+  }
+
   return (
     <View style={[{ flex: 1, alignItems: 'center' }, styles.backgroundTheme]}>
       <Logo />
@@ -16,8 +28,9 @@ export function WatchingWith({ changeBeginning, changeDefaultPage, friendsBucket
       <LargeButton
         title="Find common titles"
         onPress={() => {
+          setSelectedFriends(localFriends);
           changeDefaultPage('Watch');
-          changeBeginning(false)
+          changeBeginning(false);
         }}
       />
       </View>

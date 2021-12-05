@@ -28,7 +28,7 @@ const exploreStyle = StyleSheet.create({
   }
 })
 
-export function MovieCard({ selectVideo, data, watched, friendsBucket, selectedFriends }) {
+export function MovieCard({ selectVideo, data, watched, friendsBucket, selectedFriends, your, most }) {
   function truncateTitle(name) {
     if(name.length > 25) {
       return name.substring(0, 25) + '...';
@@ -46,7 +46,7 @@ export function MovieCard({ selectVideo, data, watched, friendsBucket, selectedF
             <Text style={exploreStyle.text}>{`${data?.vote_average}/10`}</Text>
           </View>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-            <FriendCluster friendsBucket={friendsBucket} selectedFriends={selectedFriends} />
+            <FriendCluster friendsBucket={friendsBucket} selectedFriends={selectedFriends} your={your} most={most} seed={data.id % 10}/>
             <View style={{flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 30}}>
               <MovieCardButton title="Info" selectVideo={selectVideo} data={data} customStyle={{paddingLeft: 0, paddingRight: 30}}/>
               <MovieCardButton title="Stream" customStyle={{paddingLeft: 0, paddingRight: 0}}/>

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
 import { ProfileIcon, CustomCarousel, CustomModal } from '../components'
 import styles from '../styles';
+import { data } from './picks';
+const picks = data.results
 
 export function VideoScreen({ changeBeginning, changeDefaultPage, type, data }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [picks, setPicks] = useState(data.trending);
 
   function selectVideo (data) {
     setSelectedMovie(data);

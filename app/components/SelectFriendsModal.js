@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import { Logo } from './Logo';
 import { ProfileIcon } from './ProfileIcon';
 import { LargeButton } from './LargeButton';
@@ -7,7 +7,19 @@ import { FriendIcon } from './FriendIcon';
 import Modal from "react-native-modal";
 import styles from '../styles';
 
-export function SelectFriendsModal({setModalVisible, modalVisible, toggleSelected, selectedFriends, friendsBucket}) {
+export function SelectFriendsModal({setModalVisible, modalVisible, selectedFriends, friendsBucket, setSelectedFriends }) {
+  const [localFriends, setLocalFriends] = useState(selectedFriends);
+
+  function toggleSelected(index) {
+    if (localFriends.indexOf(index) === -1) {
+      setLocalFriends([index, ...localFriends])
+    } else {
+      const newBucket = [...localFriends];
+      newBucket.splice(localFriends.indexOf(index), 1);
+      setLocalFriends(newBucket);
+    }
+  }
+
   return (
     <Modal
       isVisible={modalVisible}
@@ -27,7 +39,8 @@ export function SelectFriendsModal({setModalVisible, modalVisible, toggleSelecte
         <LargeButton
           title="Find common titles"
           onPress={() => {
-            setModalVisible(false)
+            setSelectedFriends(localFriends);
+            setModalVisible(false);
           }}
         />
         </View>

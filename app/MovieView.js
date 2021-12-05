@@ -39,7 +39,7 @@ const NavbarOptions = ({ route }) => ({
   headerShown: false,
 })
 
-export function MovieView({ defaultPage, changeDefaultPage, changeBeginning, data, friendsBucket, toggleSelected, selectedFriends }) {
+export function MovieView({ defaultPage, changeDefaultPage, changeBeginning, data, friendsBucket, setSelectedFriends, selectedFriends }) {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -69,7 +69,7 @@ export function MovieView({ defaultPage, changeDefaultPage, changeBeginning, dat
           />}
         </Tab.Screen>
         <Tab.Screen name="Watch">
-          {(props) => <WatchedScreen {...props} friendsBucket={friendsBucket} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="Watch" toggleSelected={toggleSelected} selectedFriends={selectedFriends} />}
+          {(props) => <WatchedScreen {...props} friendsBucket={friendsBucket} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="Watch" setSelectedFriends={setSelectedFriends} selectedFriends={selectedFriends} trending={data.page2Trending} topRated={data.page2TopRated} />}
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>

@@ -14,7 +14,7 @@ export class CustomCarousel extends React.Component {
   }
 
   _renderItem({ item }) {
-    return <MovieCard data={item} selectVideo={this.props.selectVideo} watched={this.props.watched} friendsBucket={this.props.friendsBucket} selectedFriends={this.props.selectedFriends}/>
+    return <MovieCard data={item} selectVideo={this.props.selectVideo} watched={this.props.watched} your={this.props.your} most={this.props.most} friendsBucket={this.props.friendsBucket} selectedFriends={this.props.selectedFriends}/>
   }
 
   render() {

@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
 import { ProfileIcon, CustomCarousel, CustomModal, WatchingWithIcons, SelectFriendsModal } from '../components'
 import styles from '../styles';
-import { data } from './data';
+import { data } from './picks';
 
 
-export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucket, toggleSelected, selectedFriends }) {
+export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucket, setSelectedFriends, selectedFriends, trending, topRated }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectingFriends, setSelectingFriends] = useState(false);
-  const [trending, setTrending] = useState(data.results);
-  const [topRated, setTopRated] = useState(data.results);
-  const [picks, setPicks] = useState(data.results);
+  const picks = data.results;
 
   function selectVideo (data) {
     setSelectedMovie(data);
@@ -21,7 +19,7 @@ export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucke
   return (
     <SafeAreaView style={[styles.backgroundTheme]}>
       <CustomModal setModalVisible={setModalVisible} modalVisible={modalVisible} data={selectedMovie} />
-      <SelectFriendsModal setModalVisible={setSelectingFriends} modalVisible={selectingFriends} toggleSelected={toggleSelected} friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
+      <SelectFriendsModal setModalVisible={setSelectingFriends} modalVisible={selectingFriends} setSelectedFriends={setSelectedFriends} friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
 
       <ProfileIcon />
       <View style={exploreStyle.header}>
@@ -34,8 +32,8 @@ export function WatchedScreen({ changeBeginning, changeDefaultPage, friendsBucke
 
       <ScrollView style={{width: '100%'}}>
         <CustomCarousel data={trending} title="Movies everyone likes:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
-        <CustomCarousel data={topRated} title="Most everyone likes these:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
-        <CustomCarousel data={picks} title="Your likes:" selectVideo={selectVideo} watched friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
+        <CustomCarousel data={topRated} title="Most everyone likes these:" selectVideo={selectVideo} watched most friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
+        <CustomCarousel data={picks} title="Your likes:" selectVideo={selectVideo} watched your friendsBucket={friendsBucket} selectedFriends={selectedFriends}/>
         <Button onPress={() => {
           changeDefaultPage('Movies');
           changeBeginning(true);

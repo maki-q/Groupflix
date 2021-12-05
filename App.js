@@ -14,6 +14,8 @@ export default function App() {
   const [movieTopRated, setMovieTopRated] = useState(null);
   const [tvTrending, setTvTrending] = useState(null);
   const [tvTopRated, setTvTopRated] = useState(null);
+  const [page2TopRated, setPage2TopRated] = useState(null);
+  const [page2Trending, setPage2Trending] = useState(null);
   const [defaultPage, changeDefaultPage] = useState('Movies');
   const [selectedFriends, setSelectedFriends] = useState([])
 
@@ -22,7 +24,7 @@ export default function App() {
     UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf')
   })
 
-  function toggleSelected(index) {
+/*   function toggleSelected(index) {
     if (selectedFriends.indexOf(index) === -1) {
       setSelectedFriends([index, ...selectedFriends])
     } else {
@@ -30,7 +32,7 @@ export default function App() {
       newBucket.splice(selectedFriends.indexOf(index), 1);
       setSelectedFriends(newBucket);
     }
-  }
+  } */
 
 
 
@@ -54,6 +56,10 @@ export default function App() {
     .then((res) => setMovieTopRated(res.data.results));
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
     .then((res) => setMovieTrending(res.data.results));
+    axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=2`)
+    .then((res) => setPage2TopRated(res.data.results));
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=2`)
+    .then((res) => setPage2Trending(res.data.results));
     axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${key}&language=en-US&page=1`)
     .then((res) => setTvTopRated(res.data.results));
     axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`)
@@ -63,12 +69,11 @@ export default function App() {
   if(!tvTrending || !tvTopRated || !movieTopRated || !movieTrending || !loaded) {
     return <Text>{"Loading..."}</Text>
   }
-
   return beginning ? (
     <LoginView changeBeginning={changeBeginning}
       changeDefaultPage={changeDefaultPage}
       friendsBucket={friendsBucket}
-      toggleSelected={toggleSelected}
+      setSelectedFriends={setSelectedFriends}
     />
   ) : (
     <MovieView
@@ -79,11 +84,13 @@ export default function App() {
       movieTopRated,
       movieTrending,
       tvTopRated,
-      tvTrending
+      tvTrending,
+      page2TopRated,
+      page2Trending
     }}
     friendsBucket={friendsBucket}
     selectedFriends={selectedFriends}
-    toggleSelected={toggleSelected}
+    setSelectedFriends={setSelectedFriends}
     />
   );
 }
