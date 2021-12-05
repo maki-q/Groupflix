@@ -3,20 +3,7 @@ import { View, Text } from 'react-native';
 import styles from '../styles';
 import { LargeButton, Logo, ProfileIcon, FriendIcon } from '../components';
 
-export function WatchingWith({ changeBeginning, changeDefaultPage }) {
-  const friendsBucket = [
-    require('../../assets/images/friends/adamk.png'),
-    require('../../assets/images/friends/olivia.jpg'),
-    require('../../assets/images/friends/elliot.jpg'),
-    require('../../assets/images/friends/kevin.jpg'),
-    require('../../assets/images/friends/khai.jpg'),
-    require('../../assets/images/friends/adamj.png'),
-    require('../../assets/images/friends/jessica.png'),
-    require('../../assets/images/friends/annie.jpg'),
-    require('../../assets/images/friends/andrewv.jpg'),
-    require('../../assets/images/friends/eric.jpg'),
-    require('../../assets/images/friends/andrewt.jpg'),
-  ]
+export function WatchingWith({ changeBeginning, changeDefaultPage, friendsBucket }) {
   return (
     <View style={[{ flex: 1, alignItems: 'center' }, styles.backgroundTheme]}>
       <Logo />

@@ -7,19 +7,16 @@ import styles from '../styles';
 import { data } from './data';
 import { key } from '../key';
 
-export function SearchScreen() {
+export function SearchScreen({ data }) {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [focusVideo, setFocusVideo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [topSearch, setTopSearch] = useState(data.results);
 
   const search = useRef(null);
 
   useEffect(() => {
     search.current.focus();
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
-    .then(res => setTopSearch(res.data.results)).catch(err => console.log(err.message))
   }, []);
 
   useEffect(() => {
@@ -69,7 +66,7 @@ export function SearchScreen() {
       {!query ? (
         <ScrollView style={{width: '100%'}}>
           <Text style={{color: 'white', width: '100%',fontSize: 18, paddingLeft: 10, margin: 10, marginBottom: 5}}>Top Searches</Text>
-          {topSearch.map((search, index) => <TopSearchCard data={search} key={index} onClick={selectVideo} />)}
+          {data.trending.map((search, index) => <TopSearchCard data={search} key={index} onClick={selectVideo} />)}
         </ScrollView>) : (
         <ScrollView style={{width: '100%'}}>
           {createCards()}

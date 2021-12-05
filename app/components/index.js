@@ -11,6 +11,7 @@ import { CustomCarousel } from './CustomCarousel';
 import { CustomModal } from './CustomModal';
 import { SearchCard } from './SearchCard';
 import { TopSearchCard } from './TopSearchCard';
+import { WatchingWithIcons } from './WatchingWithIcons';
 
 
 export {
@@ -26,4 +27,6 @@ export {
   CustomCarousel,
   CustomModal,
   SearchCard,
-  TopSearchCard };
+  TopSearchCard,
+  WatchingWithIcons
+};

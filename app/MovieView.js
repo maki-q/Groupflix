@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image } from 'react-native';
-import { VideoScreen, TvScreen, SearchScreen, WatchedScreen } from './main';
+import { VideoScreen, SearchScreen, WatchedScreen } from './main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -39,21 +39,38 @@ const NavbarOptions = ({ route }) => ({
   headerShown: false,
 })
 
-export function MovieView({ defaultPage, changeDefaultPage, changeBeginning }) {
+export function MovieView({ defaultPage, changeDefaultPage, changeBeginning, data, friendsBucket }) {
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName={defaultPage}
         screenOptions={NavbarOptions}
       >
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Search">
+          {(props) => <SearchScreen {...props}
+            data={{trending: data.movieTrending}}
+            type="Search"
+        />}
+        </Tab.Screen>
         <Tab.Screen name="Movies">
-          {(props) => <VideoScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="Movies"/>}
+          {(props) => <VideoScreen {...props}
+            data={{trending: data.movieTrending, topRated: data.movieTopRated}}
+            changeBeginning={changeBeginning}
+            changeDefaultPage={changeDefaultPage}
+            type="Movies"/
+          >}
         </Tab.Screen>
         <Tab.Screen name="TV Shows">
-          {(props) => <VideoScreen {...props} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="TV Shows"/>}
+          {(props) => <VideoScreen {...props}
+            data={{trending: data.tvTrending, topRated: data.tvTopRated}}
+            changeBeginning={changeBeginning}
+            changeDefaultPage={changeDefaultPage}
+            type="TV Shows"
+          />}
         </Tab.Screen>
-        <Tab.Screen name="Watch" component={WatchedScreen} />
+        <Tab.Screen name="Watch">
+          {(props) => <WatchedScreen {...props} friendsBucket={friendsBucket} changeBeginning={changeBeginning} changeDefaultPage={changeDefaultPage} type="Watch"/>}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
