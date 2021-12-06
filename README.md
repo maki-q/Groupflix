@@ -148,6 +148,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Quinton Maki - [Linkedin](https://www.linkedin.com/in/quinton-m-794b0020b/) - quintonmaki@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/maki-q/groupflix](https://github.com/maki-q/groupflix)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
