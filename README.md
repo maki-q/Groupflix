@@ -6,8 +6,6 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/maki-q/groupflix">View Demo</a>
-    ·
     <a href="https://github.com/maki-q/groupflix/issues">Report Bug</a>
     ·
     <a href="https://github.com/maki-q/groupflix/issues">Request Feature</a>
