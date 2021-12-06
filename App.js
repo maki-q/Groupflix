@@ -5,8 +5,23 @@ import { Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import { MovieView } from './app/MovieView';
 import { LoginView } from './app/LoginView';
+import { useAssets } from 'expo-asset'
 import { key } from './app/key'
 import axios from 'axios';
+
+const friendsBucket = [
+  require('./assets/images/friends/adamk.png'),
+  require('./assets/images/friends/olivia.jpg'),
+  require('./assets/images/friends/elliot.jpg'),
+  require('./assets/images/friends/kevin.jpg'),
+  require('./assets/images/friends/khai.jpg'),
+  require('./assets/images/friends/adamj.png'),
+  require('./assets/images/friends/jessica.png'),
+  require('./assets/images/friends/annie.jpg'),
+  require('./assets/images/friends/andrewv.jpg'),
+  require('./assets/images/friends/eric.jpg'),
+  require('./assets/images/friends/andrewt.jpg'),
+]
 
 export default function App() {
   const [beginning, changeBeginning] = useState(true);
@@ -17,39 +32,13 @@ export default function App() {
   const [page2TopRated, setPage2TopRated] = useState(null);
   const [page2Trending, setPage2Trending] = useState(null);
   const [defaultPage, changeDefaultPage] = useState('Movies');
-  const [selectedFriends, setSelectedFriends] = useState([])
+  const [selectedFriends, setSelectedFriends] = useState([]);
+  const [assets] = useAssets(friendsBucket)
 
   const [loaded] = useFonts({
     Ubuntu: require('./assets/fonts/Ubuntu-Regular.ttf'),
     UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf')
   })
-
-/*   function toggleSelected(index) {
-    if (selectedFriends.indexOf(index) === -1) {
-      setSelectedFriends([index, ...selectedFriends])
-    } else {
-      const newBucket = [...selectedFriends];
-      newBucket.splice(selectedFriends.indexOf(index), 1);
-      setSelectedFriends(newBucket);
-    }
-  } */
-
-
-
-  const friendsBucket = [
-    require('./assets/images/friends/adamk.png'),
-    require('./assets/images/friends/olivia.jpg'),
-    require('./assets/images/friends/elliot.jpg'),
-    require('./assets/images/friends/kevin.jpg'),
-    require('./assets/images/friends/khai.jpg'),
-    require('./assets/images/friends/adamj.png'),
-    require('./assets/images/friends/jessica.png'),
-    require('./assets/images/friends/annie.jpg'),
-    require('./assets/images/friends/andrewv.jpg'),
-    require('./assets/images/friends/eric.jpg'),
-    require('./assets/images/friends/andrewt.jpg'),
-  ]
-
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`)
@@ -66,7 +55,7 @@ export default function App() {
     .then((res) => setTvTrending(res.data.results));
   }, [])
 
-  if(!tvTrending || !tvTopRated || !movieTopRated || !movieTrending || !loaded) {
+  if(!tvTrending || !tvTopRated || !movieTopRated || !movieTrending || !loaded || !assets) {
     return <Text>{"Loading..."}</Text>
   }
   return beginning ? (

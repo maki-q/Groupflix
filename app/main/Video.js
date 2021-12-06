@@ -27,10 +27,10 @@ export function VideoScreen({ changeBeginning, changeDefaultPage, type, data }) 
         <CustomCarousel data={data.trending} title="Trending" selectVideo={selectVideo}/>
         <CustomCarousel data={data.topRated} title="Top Rated" selectVideo={selectVideo}/>
         <CustomCarousel data={picks} title="Your Picks" selectVideo={selectVideo}/>
-        <Button onPress={() => {
+        {/* <Button onPress={() => {
           changeDefaultPage('Movies');
           changeBeginning(true);
-        }} title="Beginning"/>
+        }} title="Beginning"/> */}
       </ScrollView>
     </SafeAreaView>
   );

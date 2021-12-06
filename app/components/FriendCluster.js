@@ -18,15 +18,16 @@ export function FriendCluster({friendsBucket, selectedFriends, your, most, seed}
 
   function createFriends() {
     let bucket = []
-    let randomMost = seed % 4;
-    selectedFriends.map((friend, index) => (
-      <Image style={[styles.icon, {zIndex: 1 + index, left: -1 * (index * 10)}]} key={index} source={friendsBucket[friend]} />
-    ))
-
-    if(most && randomMost !== 2) {
-      bucket = selectedFriends.map((friend, index) => (
-        <Image style={[styles.icon, {zIndex: 1 + index, left: -1 * ((index) * 10)}]} key={index} source={friendsBucket[friend]} />
+    if(most) {
+      let randomMost = seed % (selectedFriends.length + 1);
+      const newfriendsBucket = [require('../../assets/images/friends/IMG_4427.png'), ...friendsBucket]
+      const newSelectedFriends = selectedFriends.map(friend => friend + 1);
+      newSelectedFriends.unshift(0);
+      bucket = newSelectedFriends.filter(friend => friend !== randomMost).map((friend, index) => (
+        <Image style={[styles.icon, {zIndex: 1 + index, left: -1 * ((index) * 10)}]} key={index} source={newfriendsBucket[friend]} />
       ))
+
+
     } else {
       bucket = selectedFriends.filter(friend => offset.indexOf(friend) === -1).map((friend, index) => (
         <Image style={[styles.icon, {zIndex: 2 + index, left: -1 * ((index + 1) * 10)}]} key={index} source={friendsBucket[friend]} />
