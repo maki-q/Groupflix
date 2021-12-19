@@ -53,7 +53,7 @@
 </br>
 </br>
 
-Groupflix is an app where you and your friends can browse, search and select movies you want to see. You can then select which friends you are with, and Groupflix will list all the movies that everyone wants to seel, movies most of the party wants to see, your selected movies, and movies some people in your party do not want to see.
+Groupflix is an app where you and your friends can browse, search and select movies you want to see. You can then select which friends you are with, and Groupflix will list all the movies that everyone wants to see, movies most of the party wants to see, your selected movies, and movies some people in your party do not want to see.
 
 This app was a two day project meant to challenge myself while learning React Native. I plan on continuing development on this app as time allows over the next few months.
 
